@@ -12,3 +12,6 @@ A simple implementation of Pong to explore the Godot Engine.
 1.  Clone this repository.
 2.  Import the `project.godot` file into the Godot Engine project manager.
 3.  Press **F5** to run the main scene.
+
+### 🎨 Credits & Assets
+* **Visuals:** Used the [Breakout Pixel Art Pack](https://jackboakes.itch.io/breakout-pixel-art-pack) by **Jack Boakes** on Itch.io.
