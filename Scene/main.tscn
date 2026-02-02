@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://dblyjkgs422gl"]
+
+[ext_resource type="Texture2D" uid="uid://23ouo0ntwjxv" path="res://Assets/paddle.png" id="1_f6udf"]
+[ext_resource type="Script" uid="uid://c2cfrlii5mykq" path="res://Script/main.gd" id="1_r34rm"]
+[ext_resource type="Script" uid="uid://dqo3yo8fi55pg" path="res://Script/player.gd" id="2_2wwxx"]
+[ext_resource type="Texture2D" uid="uid://kd64lsee2y3l" path="res://Assets/ball_default.png" id="2_sblpm"]
+[ext_resource type="Script" uid="uid://bmudpahau3k7r" path="res://Script/cpu.gd" id="4_1xcnr"]
+[ext_resource type="Script" uid="uid://5h2p2c7pm2r4" path="res://Script/ball.gd" id="4_3amdw"]
+[ext_resource type="FontFile" uid="uid://2rh8f6mlm4l1" path="res://Assets/static/PixelifySans-SemiBold.ttf" id="7_ow1sv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6udf"]
+size = Vector2(24, 216)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sblpm"]
+radius = 12.0415945
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sblpm"]
+size = Vector2(20.666668, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r34rm"]
+size = Vector2(21.000006, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wwxx"]
+size = Vector2(48, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3amdw"]
+size = Vector2(56, 720)
+
+[node name="Main" type="Node2D" unique_id=1477614789]
+script = ExtResource("1_r34rm")
+
+[node name="Player" type="StaticBody2D" parent="." unique_id=1967813746]
+z_index = 5
+position = Vector2(80, 360)
+script = ExtResource("2_2wwxx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1532132414]
+rotation = 4.712389
+scale = Vector2(3, 3)
+texture = ExtResource("1_f6udf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=627796632]
+visible = false
+shape = SubResource("RectangleShape2D_f6udf")
+debug_color = Color(0.9540971, 8.663535e-07, 0.5526925, 0.41960785)
+
+[node name="CPU" type="StaticBody2D" parent="." unique_id=253005294]
+z_index = 5
+position = Vector2(880, 360)
+script = ExtResource("4_1xcnr")
+
+[node name="Sprite2D" type="Sprite2D" parent="CPU" unique_id=545078063]
+self_modulate = Color(0.2, 1, 0, 1)
+rotation = 1.5707964
+scale = Vector2(3, 3)
+texture = ExtResource("1_f6udf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CPU" unique_id=1318228905]
+visible = false
+shape = SubResource("RectangleShape2D_f6udf")
+debug_color = Color(0.9540971, 8.663535e-07, 0.5526925, 0.41960785)
+
+[node name="BALL" type="CharacterBody2D" parent="." unique_id=2133635396]
+position = Vector2(480, 360)
+script = ExtResource("4_3amdw")
+
+[node name="Sprite2D" type="Sprite2D" parent="BALL" unique_id=1070829491]
+scale = Vector2(2, 2)
+texture = ExtResource("2_sblpm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BALL" unique_id=1420582695]
+shape = SubResource("CircleShape2D_sblpm")
+
+[node name="Borders" type="StaticBody2D" parent="." unique_id=436860591]
+position = Vector2(880, 360)
+rotation = 1.5707964
+scale = Vector2(3, 3)
+
+[node name="TOP" type="CollisionShape2D" parent="Borders" unique_id=1100092146]
+position = Vector2(-130.33333, 133.33334)
+shape = SubResource("RectangleShape2D_sblpm")
+
+[node name="BOTTOM" type="CollisionShape2D" parent="Borders" unique_id=134017248]
+position = Vector2(130.50002, 133.33331)
+shape = SubResource("RectangleShape2D_r34rm")
+
+[node name="ScoreRight" type="Area2D" parent="." unique_id=1295053542]
+position = Vector2(0, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreRight" unique_id=882142505]
+position = Vector2(-24, 0)
+shape = SubResource("RectangleShape2D_2wwxx")
+
+[node name="ScoreLeft" type="Area2D" parent="." unique_id=1301956293]
+position = Vector2(960, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreLeft" unique_id=1717721386]
+position = Vector2(28, 0)
+shape = SubResource("RectangleShape2D_3amdw")
+
+[node name="Control" type="Control" parent="." unique_id=241613341]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 720.0
+
+[node name="Background" type="ColorRect" parent="Control" unique_id=688045428]
+z_index = -20
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15742654, 0.07527273, 0.085895054, 1)
+
+[node name="PlayerLBL" type="Label" parent="Control" unique_id=1437340744]
+z_index = 30
+layout_mode = 0
+offset_left = 410.0
+offset_right = 455.0
+offset_bottom = 90.0
+pivot_offset = Vector2(22.5, 45)
+theme_override_fonts/font = ExtResource("7_ow1sv")
+theme_override_font_sizes/font_size = 75
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CPULBL" type="Label" parent="Control" unique_id=391258363]
+z_index = 30
+layout_mode = 0
+offset_left = 510.0
+offset_right = 555.0
+offset_bottom = 90.0
+pivot_offset = Vector2(22.5, 45)
+theme_override_fonts/font = ExtResource("7_ow1sv")
+theme_override_font_sizes/font_size = 75
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BallTimer" type="Timer" parent="." unique_id=518177915]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="ScoreRight" to="." method="_on_score_right_body_entered"]
+[connection signal="body_entered" from="ScoreLeft" to="." method="_on_score_left_body_entered"]
+[connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
